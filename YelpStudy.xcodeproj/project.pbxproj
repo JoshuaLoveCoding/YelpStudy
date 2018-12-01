@@ -15,6 +15,7 @@
 		42843BDE21B2BD4D00B64316 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42843BDD21B2BD4D00B64316 /* main.m */; };
 		42843BE821B2BD4D00B64316 /* YelpStudyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42843BE721B2BD4D00B64316 /* YelpStudyTests.m */; };
 		42843BF321B2BD4D00B64316 /* YelpStudyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42843BF221B2BD4D00B64316 /* YelpStudyUITests.m */; };
+		42843C0321B2BDC300B64316 /* YelpNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 42843C0221B2BDC300B64316 /* YelpNetworking.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		42843BEE21B2BD4D00B64316 /* YelpStudyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YelpStudyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42843BF221B2BD4D00B64316 /* YelpStudyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpStudyUITests.m; sourceTree = "<group>"; };
 		42843BF421B2BD4D00B64316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42843C0121B2BDC300B64316 /* YelpNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YelpNetworking.h; sourceTree = "<group>"; };
+		42843C0221B2BDC300B64316 /* YelpNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpNetworking.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		42843BCD21B2BD4B00B64316 /* YelpStudy */ = {
 			isa = PBXGroup;
 			children = (
+				42843C0021B2BD5D00B64316 /* Networking */,
 				42843BCE21B2BD4B00B64316 /* AppDelegate.h */,
 				42843BCF21B2BD4B00B64316 /* AppDelegate.m */,
 				42843BD121B2BD4B00B64316 /* ViewController.h */,
@@ -130,6 +134,15 @@
 				42843BF421B2BD4D00B64316 /* Info.plist */,
 			);
 			path = YelpStudyUITests;
+			sourceTree = "<group>";
+		};
+		42843C0021B2BD5D00B64316 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				42843C0121B2BDC300B64316 /* YelpNetworking.h */,
+				42843C0221B2BDC300B64316 /* YelpNetworking.m */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42843BD321B2BD4B00B64316 /* ViewController.m in Sources */,
+				42843C0321B2BDC300B64316 /* YelpNetworking.m in Sources */,
 				42843BDE21B2BD4D00B64316 /* main.m in Sources */,
 				42843BD021B2BD4B00B64316 /* AppDelegate.m in Sources */,
 			);
