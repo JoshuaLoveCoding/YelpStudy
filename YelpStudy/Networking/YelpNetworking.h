@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YelpDataModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@import CoreLocation;
+
+typedef void (^RestaurantCompletionBlock)(NSArray <YelpDataModel *>* dataModelArray);
 
 @interface YelpNetworking : NSObject
 
-@end
++ (YelpNetworking *)sharedInstance;
 
-NS_ASSUME_NONNULL_END
+- (void)fetchRestaurantsBasedOnLocation:(CLLocation *)location term:(NSString *)term completionBlock:(RestaurantCompletionBlock)completionBlock;
+
+@end
