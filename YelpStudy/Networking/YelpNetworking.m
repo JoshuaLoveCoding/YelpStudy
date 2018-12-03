@@ -7,6 +7,7 @@
 //
 
 #import "YelpNetworking.h"
+#import "YelpDataStore.h"
 
 static NSString * const api_key = @"***";
 
@@ -57,8 +58,12 @@ typedef void (^TokenPendingTask)(NSString *token);
             
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NULL error:nil];
             if (!error) {
-                completionBlock([YelpDataModel buildDataModelArrayFromDictionaryArray:dict[@"businesses"]]);
+                NSArray<YelpDataModel *> *dataModelArray = [YelpDataModel buildDataModelArrayFromDictionaryArray:dict[@"businesses"]];
+                [YelpDataStore sharedInstance].dataModels = dataModelArray;
+                
+                completionBlock(dataModelArray);
             }
+
         }];
         
         [dataTask resume];

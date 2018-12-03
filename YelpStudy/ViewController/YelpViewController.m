@@ -6,19 +6,22 @@
 //  Copyright © 2018 Joshua. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "YelpViewController.h"
 #import "YelpNetworking.h"
 #import "YelpTableViewCell.h"
+#import "YelpDataStore.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface YelpViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic, copy) NSArray <YelpDataModel *> *dataModels;
 @property (nonatomic) UISearchBar *searchBar;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *userLocation;
 
 @end
 
-@implementation ViewController
+@implementation YelpViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +50,11 @@
             [self.tableView reloadData];
         });
     }];
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
 
 }
 
@@ -112,6 +120,40 @@
 - (void)didTapSettings
 {
     
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    if (error) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops..."
+                                                                       message:@"Failed to Get Location"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *currentLocation = locations.lastObject;
+    self.userLocation = currentLocation;
+    [[YelpDataStore sharedInstance] setUserLocation:currentLocation];
+    
+    [manager stopUpdatingLocation];
+    NSLog(@"current location %lf %lf", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
+    [[YelpNetworking sharedInstance] fetchRestaurantsBasedOnLocation:currentLocation term:@"restaurant" completionBlock:^(NSArray<YelpDataModel *> *dataModelArray) {
+        self.dataModels = dataModelArray;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 @end
