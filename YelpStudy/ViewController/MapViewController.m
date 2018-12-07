@@ -12,7 +12,6 @@
 #import <UIImageView+AFNetworking.h>
 @import MapKit;
 
-
 @interface MapViewController () <MKMapViewDelegate>
 
 @property (nonatomic) MKMapView *mapView;

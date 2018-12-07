@@ -19,9 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *openingTimeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImage;
 
-
 @end
-
 
 @implementation DetailViewHeaderTableViewCell
 

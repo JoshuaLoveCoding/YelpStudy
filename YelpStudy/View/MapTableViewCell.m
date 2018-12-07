@@ -10,7 +10,6 @@
 #import "YelpAnnotation.h"
 @import MapKit;
 
-
 @interface MapTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
