@@ -43,7 +43,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YelpTableViewCell" bundle:nil] forCellReuseIdentifier:@"YelpViewCell"];
 
-    CLLocation *loc = [[CLLocation alloc] initWithLatitude:37.331566 longitude:-122.032744];
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:self.userLocation.coordinate.latitude longitude:self.userLocation.coordinate.longitude];
     
     [[YelpNetworking sharedInstance] fetchRestaurantsBasedOnLocation:loc term:@"sushi" completionBlock:^(NSArray<YelpDataModel *> *dataModelArray) {
         self.dataModels = dataModelArray;
@@ -106,7 +106,7 @@
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
     [self.view endEditing:YES];
-    CLLocation *loc = [[CLLocation alloc] initWithLatitude:37.3263625 longitude:-122.027210];
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:self.userLocation.coordinate.latitude longitude:self.userLocation.coordinate.longitude];
     
     // the following code the key that we can finally make our table be able to search based on user’s input
     

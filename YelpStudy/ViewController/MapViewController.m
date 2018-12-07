@@ -32,7 +32,7 @@
     span.longitudeDelta = 0.005;
     
     CLLocationCoordinate2D location;
-    location.latitude = 37.331566;
+location.latitude = 37.331566;
     location.longitude = -122.032744;
     
     MKCoordinateRegion region;
